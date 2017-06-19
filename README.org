@@ -1,0 +1,43 @@
+* About
+  This is an implementation of the generalized scale-free network model described in Section 5 of _Fitting the linear preferential attachment model_ (Wan et al.) [fn:1]
+
+  The two simulation programs, netSim1 and netSim2, correspond to different starting values. netSim1 starts with one node 0, with a self loop, 0 -> 0. netSim2 starts with two node 0 and 1, and a connecting edge 0 -> 1.
+
+  The computation complexity is O(n).
+
+  
+* Compilation
+  If using unix/linux/osx, simply type 'make' in this directory.
+
+  If using windows, download and install cygwin
+  (http://www.cygwin.com), then type 'make' in this directory within the
+  cygwin terminal.
+
+  After compilation the 'netSim1’ and 'netSim2’ binaries will be available in this
+  directory.
+
+
+* Usage
+   ./netSim1 alpha beta gamma xi delta_in delta_out target_n_edges edge_output_filename.csv degree_output_filename.csv evolution_output_filename.csv
+
+   ./netSim1 alpha beta gamma xi delta_in delta_out target_n_edges edge_output_filename.csv degree_output_filename.csv evolution_output_filename.csv
+
+   Simulate a model with target_n_edges.
+
+   + alpha			 : probability of a edge-creation from a new node to an existing node
+   + beta			 : probability of a edge-creation between two existing nodes
+   + gamma			 : probability of a edge-creation from an existing node to a new node
+   + xi		 		 : probability of a edge-creation between two new nodes
+   + (1-alpha-beta-gamma-xi)	 : probability of a edge-creation from a new node to itself
+   + delta_in			 : in-degree probability offset
+   + delta_out			 : out-degree probability offset
+   + target_n_edges 		 : number of edges in the simulated network
+
+
+* Requirements
+   A C compiler with the standard libraries.
+
+
+* References
+[fn:1] https://arxiv.org/abs/1703.03095
+
