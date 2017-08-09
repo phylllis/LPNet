@@ -66,7 +66,7 @@ void netSim(double alpha,
             }
             else
             {
-                this_edge_end = (int) ceil((v-current_n_edges)/delta_in);
+                this_edge_end = (int) ceil((v-current_n_edges)/delta_in) -1;
             }
             this_edge_start = current_n_nodes;
             in_deg_counts[this_edge_end] ++;
@@ -86,7 +86,7 @@ void netSim(double alpha,
             }
             else
             {
-                this_edge_end = (int) ceil((v-current_n_edges)/delta_in);
+                this_edge_end = (int) ceil((v-current_n_edges)/delta_in) -1;
             }
             
             w = (double) ( rand() % 100000 / (double) 100000 )* (current_n_edges + current_n_nodes*delta_out);
@@ -96,12 +96,13 @@ void netSim(double alpha,
             }
             else
             {
-                this_edge_start = (int) ceil((w-current_n_edges)/delta_out);
+                this_edge_start = (int) ceil((w-current_n_edges)/delta_out) -1;
             }
             in_deg_counts[this_edge_end] ++;
             out_deg_counts[this_edge_start] ++;
             current_scenario = 2;
         }
+        
         else if (u > alpha+beta & u <= alpha+beta+gamma)
         {
             // Scenario gamma
@@ -112,7 +113,7 @@ void netSim(double alpha,
             }
             else
             {
-                this_edge_start = (int) ceil((w-current_n_edges)/delta_out);
+                this_edge_start = (int) ceil((w-current_n_edges)/delta_out) -1;
             }
             this_edge_end = current_n_nodes;
             in_deg_counts[this_edge_end] = 1;
@@ -134,7 +135,8 @@ void netSim(double alpha,
             current_n_nodes++;
             current_scenario = 4;
         }
-        else
+        
+        else // if (u > alpha+beta+gamma+xi & u <= 1)
         {
             // Scenario loop
             this_edge_start = (int) current_n_nodes;
@@ -144,6 +146,7 @@ void netSim(double alpha,
             current_n_nodes++;
             current_scenario = 5;
         }
+        
         evolution[current_n_edges] = current_scenario;
         edge_end[current_n_edges] = this_edge_end;
         edge_start[current_n_edges] = this_edge_start;
